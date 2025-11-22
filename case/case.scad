@@ -30,7 +30,7 @@ slider_total_height = lid_thickness + immersion_depth + kailh_sockets_thickness 
 w_shell = 8.94;
 h_shell = 3.26;
 r_corner = 1.2;
-pcb_usb_distance = 9;
+pcb_usb_distance = 6;
 Z_USB = h_shell / 2 + immersion_depth + kailh_sockets_thickness + pcb_usb_distance;
 usb_main_offset = [139.9, -76, Z_USB];
 usb_tunnel_offset = [139.9, -28, Z_USB];
@@ -175,8 +175,8 @@ module top_case() {
 module bottom_case() {
   difference() {
     lid();
-    reset_cutout(0.2);
-    reset_overhang_cutout(reset_button_thick + 0.2);
+    //reset_cutout(0.2);
+    //reset_overhang_cutout(reset_button_thick + 0.2);
     lid_screw_holes();
     pwr_switch_slider_cutout(delta=clear_switch_mm);
     power_switch_overhang_cutout(delta=clear_switch_mm);
@@ -285,18 +285,21 @@ module tent() {
 // -----------------------------------------------------------------------------
 // ------------------------------ Build Select ---------------------------------
 // -----------------------------------------------------------------------------
-PART = "exploded";
+PART = "tent";
 
 // -------------------- Module: build --------------------
 module build() {
   if (PART == "exploded") {
+    mirror([1, 0, 0]){
     translate([0, 0, EXPLODE]) top_case();
-    translate([0, 0, -EXPLODE]) switchplate_foam();
+    //translate([0, 0, -EXPLODE]) switchplate_foam();
     translate([0, 0, -2 * EXPLODE]) power_switch_slider();
-    translate([0, 0, -2 * EXPLODE]) reset_switch_button();
+    //translate([0, 0, -2 * EXPLODE]) reset_switch_button();
     translate([0, 0, -3 * EXPLODE]) bottom_foam();
     translate([0, 0, -4 * EXPLODE]) bottom_case();
-  } else if (PART == "top_case")
+    }
+  } 
+  else if (PART == "top_case")
     top_case();
   else if (PART == "switch_plate_foam")
     switchplate_foam();
@@ -308,8 +311,10 @@ module build() {
     bottom_foam();
   else if (PART == "bottom_case")
     bottom_case();
-  else if (PART == "tent")
+  else if (PART == "tent"){
+    //mirror([1, 0, 0])
     tent();
+  }
   else
     echo(str("Unknown PART: ", PART));
 }
