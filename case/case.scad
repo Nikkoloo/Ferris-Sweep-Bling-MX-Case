@@ -285,7 +285,7 @@ module tent() {
 // -----------------------------------------------------------------------------
 // ------------------------------ Build Select ---------------------------------
 // -----------------------------------------------------------------------------
-PART = "tent";
+PART = "bottom_case";
 
 // -------------------- Module: build --------------------
 module build() {
@@ -300,6 +300,7 @@ module build() {
     }
   } 
   else if (PART == "top_case")
+    mirror([1,0,0])
     top_case();
   else if (PART == "switch_plate_foam")
     switchplate_foam();
@@ -308,8 +309,10 @@ module build() {
   else if (PART == "reset_switch_button")
     reset_switch_button();
   else if (PART == "bottom_foam")
+    mirror([1,0,0])
     bottom_foam();
   else if (PART == "bottom_case")
+    mirror([1,0,0])
     bottom_case();
   else if (PART == "tent"){
     //mirror([1, 0, 0])
