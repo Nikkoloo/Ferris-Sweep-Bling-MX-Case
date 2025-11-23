@@ -10,7 +10,7 @@ fillet_radius = 2;
 wall_thickness = 5.5;
 keycaps_cutout_height = 8;
 seal_thickness = 0.5;
-controller_wall_thickness = 1;
+controller_wall_thickness = 1.2;
 
 fr4_thickness = 1.6;
 switchplate_thickness = 3.3;
@@ -285,7 +285,7 @@ module tent() {
 // -----------------------------------------------------------------------------
 // ------------------------------ Build Select ---------------------------------
 // -----------------------------------------------------------------------------
-PART = "bottom_case";
+PART = "top_case";
 
 // -------------------- Module: build --------------------
 module build() {
@@ -300,7 +300,7 @@ module build() {
     }
   } 
   else if (PART == "top_case")
-    mirror([1,0,0])
+    //mirror([1,0,0])
     top_case();
   else if (PART == "switch_plate_foam")
     switchplate_foam();
